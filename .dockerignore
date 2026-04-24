@@ -1,0 +1,25 @@
+# Keep the Docker build context small — mirrors .gitignore plus build junk.
+__pycache__/
+*.pyc
+.venv/
+venv/
+.git/
+.gitignore
+.github/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local dev outputs
+*.log
+uvicorn_*.txt
+eval_*.txt
+*_preds.parquet
+*_fact_vs_pred.xlsx
+*_calibrated*.xlsx
+
+# Docs that don't belong in the image
+README.md
+Makefile
+scripts/

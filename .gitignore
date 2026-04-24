@@ -1,0 +1,27 @@
+# ── Python ─────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.venv/
+venv/
+.env
+
+# ── OS / editor ─────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ── Runtime / logs ──────────────────────────────────────────────────────
+*.log
+uvicorn_*.txt
+*.tmp
+
+# ── Test/eval outputs (regenerate on demand) ────────────────────────────
+batch_results.json
+*_preds.parquet
+*_fact_vs_pred.xlsx
+*_calibrated*.xlsx
+eval_*.txt

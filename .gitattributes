@@ -1,0 +1,7 @@
+# Git LFS tracking — distance_grid.parquet is 196 MB (GitHub blocks >100 MB
+# blobs without LFS). Apply with:  git lfs install && git add .gitattributes
+data/distance_grid.parquet filter=lfs diff=lfs merge=lfs -text
+*.parquet                  filter=lfs diff=lfs merge=lfs -text
+*.joblib                   filter=lfs diff=lfs merge=lfs -text
+nn_model/model.pt          filter=lfs diff=lfs merge=lfs -text
+nn_model/lgb_model.txt     text

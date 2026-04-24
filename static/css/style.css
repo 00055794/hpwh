@@ -1,0 +1,332 @@
+﻿/* ─────────────────────────────────────────────────────────────
+   KZ Real Estate Price Estimator — style.css (dark theme)
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  --bg:          #0e1117;
+  --card-bg:     #171c2a;
+  --border:      #252d40;
+  --text:        #e2e8f0;
+  --text-muted:  #7a8499;
+  --accent:      #00E0A8;
+  --accent-dim:  rgba(0, 224, 168, 0.12);
+  --input-bg:    #1e2535;
+  --error:       #ff4b4b;
+  --radius:      10px;
+  --radius-sm:   6px;
+  --shadow:      0 2px 14px rgba(0, 0, 0, 0.45);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+.app-header {
+  padding: 1.1rem 2rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+.header-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.2rem;
+}
+.header-caption {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+  padding: 1.4rem 2rem;
+  align-items: start;
+}
+.col { min-width: 0; }
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+}
+
+.expander {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.expander > summary {
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.87rem;
+  color: var(--text);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  outline: none;
+}
+.expander > summary::-webkit-details-marker { display: none; }
+.expander > summary::after {
+  content: "+";
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  line-height: 1;
+}
+.expander[open] > summary::after { content: "\2212"; }
+.expander-body { padding: 0 1rem 1rem; }
+
+#single-map {
+  height: 340px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+#batch-map {
+  height: 420px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.form-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+.coords-row { margin-bottom: 0.9rem; }
+.sub-col { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.form-group label {
+  display: block;
+  font-size: 0.71rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.22rem;
+}
+input[type="number"],
+input[type="text"],
+select {
+  width: 100%;
+  padding: 0.4rem 0.58rem;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.15s;
+  -moz-appearance: textfield;
+}
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button { -webkit-appearance: none; }
+input:focus, select:focus { border-color: var(--accent); }
+select option { background: var(--input-bg); color: var(--text); }
+
+.btn-primary {
+  background: var(--accent);
+  color: #0a0f1a;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.62rem 1.2rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  letter-spacing: 0.02em;
+}
+.btn-primary:hover    { opacity: 0.87; }
+.btn-primary:disabled { opacity: 0.38; cursor: not-allowed; }
+.btn-full { width: 100%; }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 0.48rem 0.9rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+.btn-secondary:hover    { background: var(--accent-dim); }
+.btn-secondary:disabled { opacity: 0.35; cursor: not-allowed; pointer-events: none; }
+
+.btn-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.upload-card { padding: 0; }
+.upload-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.1rem 1.5rem;
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.15s;
+  text-align: center;
+}
+.upload-zone:hover { border-color: var(--accent); }
+.upload-zone input[type="file"] { display: none; }
+.upload-title { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
+.upload-hint  { font-size: 0.77rem; color: var(--text-muted); }
+.upload-zone.uploading { border-color: var(--accent); opacity: 0.6; }
+
+.success-banner {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  color: var(--accent);
+  font-size: 1.12rem;
+  font-weight: 700;
+  padding: 0.72rem 1rem;
+  margin-bottom: 1rem;
+}
+.error-card {
+  background: rgba(255, 75, 75, 0.08);
+  border: 1px solid var(--error);
+  border-radius: var(--radius-sm);
+  color: var(--error);
+  font-size: 0.87rem;
+  font-weight: 500;
+  padding: 0.65rem 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.loading-card {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--card-bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 1rem;
+}
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { font-size: 0.86rem; color: var(--text-muted); }
+
+.table-scroll {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+.data-table th {
+  background: #1e2535;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  padding: 0.48rem 0.65rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.data-table td {
+  padding: 0.38rem 0.65rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:nth-child(even) td { background: rgba(255, 255, 255, 0.018); }
+
+/* ── Leaflet dark overrides ──────────────────────────────────── */
+.leaflet-container {
+  background: #1a1e2e;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* --- Yandex Maps container background --- */
+.ymaps-2-1-79-map,
+.ymaps-2-1-79-map-bg { background: #1a1e2e; }
+.hidden { display: none !important; }
+
+/* ── Leaflet geocoder: force white search box (override dark theme) ── */
+.leaflet-control-geocoder,
+.leaflet-top .leaflet-control-geocoder {
+  background: #ffffff !important;
+  border-radius: 6px !important;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.35) !important;
+  border: 1px solid #cfd4de !important;
+}
+.leaflet-control-geocoder .leaflet-control-geocoder-form input,
+.leaflet-control-geocoder .leaflet-control-geocoder-form input[type="text"],
+.leaflet-control-geocoder .leaflet-control-geocoder-form input:focus,
+.leaflet-control-geocoder .leaflet-control-geocoder-form input[type="text"]:focus {
+  background: #ffffff !important;
+  color: #1a1f2e !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 6px 10px !important;
+  min-width: 220px !important;
+  font-size: 0.85rem !important;
+  border-radius: 6px !important;
+}
+.leaflet-control-geocoder .leaflet-control-geocoder-form input::placeholder {
+  color: #8891a3 !important;
+}
+.leaflet-control-geocoder .leaflet-control-geocoder-icon,
+.leaflet-control-geocoder .leaflet-control-geocoder-form-no-error,
+.leaflet-control-geocoder .leaflet-control-geocoder-alternatives {
+  background-color: #ffffff !important;
+  color: #1a1f2e !important;
+  border-color: #cfd4de !important;
+}
+.leaflet-control-geocoder .leaflet-control-geocoder-alternatives a,
+.leaflet-control-geocoder .leaflet-control-geocoder-alternatives li {
+  background: #ffffff !important;
+  color: #1a1f2e !important;
+}
+.leaflet-control-geocoder .leaflet-control-geocoder-alternatives a:hover,
+.leaflet-control-geocoder .leaflet-control-geocoder-selected {
+  background: #eef1f7 !important;
+  color: #1a1f2e !important;
+}

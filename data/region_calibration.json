@@ -1,0 +1,189 @@
+{
+  "method": "median_actual_over_pred",
+  "cutoff_date": "2026-03-01",
+  "calibration_window": "2026-01-01..2026-02-28",
+  "n_per_region_target": 600,
+  "shrink_below_n": 100,
+  "regions": {
+    "Abayskiy_r-n": {
+      "alpha": 0.9832,
+      "raw_alpha": 0.8878,
+      "n": 15
+    },
+    "Akmolinskaya_obl_": {
+      "alpha": 0.9938,
+      "raw_alpha": 0.9938,
+      "n": 124
+    },
+    "Aktyubinskaya_obl_": {
+      "alpha": 1.0636,
+      "raw_alpha": 1.0636,
+      "n": 525
+    },
+    "Alatauskiy_r-n": {
+      "alpha": 0.9929,
+      "raw_alpha": 0.9929,
+      "n": 209
+    },
+    "Almalinskiy_r-n": {
+      "alpha": 1.0093,
+      "raw_alpha": 1.0093,
+      "n": 242
+    },
+    "Almatinskaya_obl_": {
+      "alpha": 1.0001,
+      "raw_alpha": 1.0036,
+      "n": 2
+    },
+    "Almaty_r-n": {
+      "alpha": 0.9789,
+      "raw_alpha": 0.9789,
+      "n": 600
+    },
+    "Aly-Farabiyskiy_r-n": {
+      "alpha": 0.9592,
+      "raw_alpha": 0.8953,
+      "n": 39
+    },
+    "Atyrauskaya_obl_": {
+      "alpha": 0.8891,
+      "raw_alpha": 0.8891,
+      "n": 230
+    },
+    "Auezovskiy_r-n": {
+      "alpha": 1.0146,
+      "raw_alpha": 1.0146,
+      "n": 263
+    },
+    "Bostandykskiy_r-n": {
+      "alpha": 1.0204,
+      "raw_alpha": 1.0204,
+      "n": 489
+    },
+    "Enbekshinskiy_r-n": {
+      "alpha": 0.9646,
+      "raw_alpha": 0.8735,
+      "n": 28
+    },
+    "Esilyskiy_r-n": {
+      "alpha": 1.0146,
+      "raw_alpha": 1.0146,
+      "n": 600
+    },
+    "Karagandinskaya_obl_": {
+      "alpha": 0.9782,
+      "raw_alpha": 0.9782,
+      "n": 600
+    },
+    "Karatauskiy_r-n": {
+      "alpha": 0.9307,
+      "raw_alpha": 0.9222,
+      "n": 89
+    },
+    "Kostanayskaya_obl_": {
+      "alpha": 1.1008,
+      "raw_alpha": 1.1008,
+      "n": 143
+    },
+    "Kyzylordinskaya_obl_": {
+      "alpha": 1.1814,
+      "raw_alpha": 1.1814,
+      "n": 137
+    },
+    "Mangistauskaya_obl_": {
+      "alpha": 0.9871,
+      "raw_alpha": 0.9871,
+      "n": 313
+    },
+    "Medeuskiy_r-n": {
+      "alpha": 1.0234,
+      "raw_alpha": 1.0234,
+      "n": 190
+    },
+    "Nauryzbayskiy_r-n": {
+      "alpha": 0.9624,
+      "raw_alpha": 0.9624,
+      "n": 202
+    },
+    "Nura_r-n": {
+      "alpha": 1.0003,
+      "raw_alpha": 1.0003,
+      "n": 467
+    },
+    "Pavlodarskaya_obl_": {
+      "alpha": 1.0673,
+      "raw_alpha": 1.0673,
+      "n": 370
+    },
+    "Saryarka_r-n": {
+      "alpha": 1.0002,
+      "raw_alpha": 1.0002,
+      "n": 255
+    },
+    "Turan_r-n": {
+      "alpha": 1.0015,
+      "raw_alpha": 1.0304,
+      "n": 5
+    },
+    "Turksibskiy_r-n": {
+      "alpha": 0.9998,
+      "raw_alpha": 0.9998,
+      "n": 109
+    },
+    "Ulytauskaya_obl_": {
+      "alpha": 0.9405,
+      "raw_alpha": 0.9405,
+      "n": 169
+    },
+    "Vostochno-Kazahstanskaya_obl_": {
+      "alpha": 1.0108,
+      "raw_alpha": 1.0108,
+      "n": 324
+    },
+    "Zhetysuskiy_r-n": {
+      "alpha": 1.0394,
+      "raw_alpha": 1.0526,
+      "n": 75
+    },
+    "r-n_Baykonur": {
+      "alpha": 0.9933,
+      "raw_alpha": 0.9933,
+      "n": 108
+    },
+    "Abayskaya_obl_": {
+      "alpha": 1.0,
+      "raw_alpha": 1.0,
+      "n": 0
+    },
+    "Sarayshyk_r-n": {
+      "alpha": 1.0,
+      "raw_alpha": 1.0,
+      "n": 0
+    },
+    "Severo-Kazahstanskaya_obl_": {
+      "alpha": 1.0,
+      "raw_alpha": 1.0,
+      "n": 0
+    },
+    "Turkestanskaya_obl_": {
+      "alpha": 1.0,
+      "raw_alpha": 1.0,
+      "n": 0
+    },
+    "Zapadno-Kazahstanskaya_obl_": {
+      "alpha": 1.0,
+      "raw_alpha": 1.0,
+      "n": 0
+    },
+    "Zhambylskaya_obl_": {
+      "alpha": 1.0,
+      "raw_alpha": 1.0,
+      "n": 0
+    },
+    "Zhetysuskaya_obl_": {
+      "alpha": 1.0,
+      "raw_alpha": 1.0,
+      "n": 0
+    }
+  }
+}
