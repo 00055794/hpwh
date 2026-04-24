@@ -1,0 +1,103 @@
+name: Build & Publish Docker image
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout (with LFS)
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Ensure LFS objects are fetched
+        run: git lfs pull
+
+      - name: Verify required large files are real (not LFS pointers)
+        run: |
+          set -e
+          for f in data/distance_grid.parquet nn_model/model.pt nn_model/ridge_meta.joblib nn_model/scaler_X.joblib nn_model/scaler_y.joblib; do
+            size=$(stat -c%s "$f")
+            echo "$f : $size bytes"
+            if [ "$size" -lt 10000 ]; then
+              echo "ERROR: $f looks like an LFS pointer (size=$size). LFS pull failed."
+              exit 1
+            fi
+          done
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compute image tags
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=sha,format=short
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build (and push on non-PR)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: ${{ github.event_name != 'pull_request' }}
+          load: ${{ github.event_name == 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Smoke-test the freshly built image
+        if: github.event_name != 'pull_request'
+        run: |
+          IMAGE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:sha-$(echo ${{ github.sha }} | cut -c1-7)"
+          echo "Pulling $IMAGE"
+          docker pull "$IMAGE"
+          docker run -d --name smoke -p 8000:8000 "$IMAGE"
+          echo "Waiting for /health ..."
+          for i in $(seq 1 60); do
+            if curl -fsS http://localhost:8000/health >/dev/null 2>&1; then
+              echo "Health OK after ${i}s"
+              curl -s http://localhost:8000/health
+              echo
+              break
+            fi
+            sleep 2
+            if [ "$i" = "60" ]; then
+              echo "Health never came up"; docker logs smoke; exit 1
+            fi
+          done
+          echo "=== /predict smoke ==="
+          curl -s -X POST http://localhost:8000/predict \
+               -H "Content-Type: application/json" \
+               -d '{"CITY":"Almaty","LAT":43.238949,"LON":76.889709,"AREA":58,"ROOMS":2,"FLOOR":5,"FLOORS_TOTAL":9,"YEAR_BUILT":2005,"CONDITION":"Хорошее","MATERIAL":"панельный","QUARTER":"2026Q2"}'
+          echo
+          docker rm -f smoke
